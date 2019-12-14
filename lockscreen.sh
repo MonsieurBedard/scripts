@@ -1,9 +1,7 @@
 #!/bin/sh
 
-# Need i3lock, scrot and ImageMagick
+# Need i3lock-color
 
-scrot /tmp/screen.png
+sleep 1
 
-convert -blur 0x10 /tmp/screen.png /tmp/screen.png
-
-i3lock -i /tmp/screen.png
+i3lock --blur=sigma --indicator

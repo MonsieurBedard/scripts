@@ -6,19 +6,17 @@
 rofi_command="rofi -width 10 -location 0 -lines 4"
 
 # Option
-options=$'Fullscreen\nActive\nSelect\nCancel'
+options=$'Fullscreen\nSelect\nCancel'
 
 # Command
 chosen=$(echo -e "$options" | $rofi_command -dmenu -i -p "Screenshot")
 
 # Path to file
-location='/home/alexandre/Images/Screenshots/%Y-%m-%d-%H%M%S-screen.png'
+location=$"/home/alexandre/Images/Screenshots/$(date +%s)-screen.png"
 
 # Result
 if [[ $chosen = "Fullscreen" ]]; then
-    scrot $location
-elif [[ $chosen = "Active" ]]; then
-    scrot -u $location
+    maim $location
 elif [[ $chosen = "Select" ]]; then
-    scrot -s $location
+    maim -s $location
 fi

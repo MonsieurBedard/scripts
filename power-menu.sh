@@ -3,13 +3,13 @@
 # Need rofi and systemd
 
 # Rofi configuration
-rofi_command="rofi -width 10 -location 0 -lines 6"
+rofi_command="rofi -width 10 -location 1 -lines 6 -yoffset 42 -xoffset 6"
 
 # Option
 options=$'Shutdown\nReboot\nSuspend\nLogout\nLock\nCancel'
 
 # Command
-chosen=$(echo -e "$options" | $rofi_command -dmenu -i -p "Power Menu")
+chosen=$(echo -e "$options" | $rofi_command -dmenu -i -p "Power")
 
 # Result
 if [[ $chosen = "Logout" ]]; then
