@@ -1,22 +1,24 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Need rofi and scrot
+# Need rofi and maim
 
 # Rofi configuration
-rofi_command="rofi -width 10 -location 0 -lines 4"
+rofi_command="rofi -lines 3 -width 20"
 
 # Option
-options=$'Fullscreen\nSelect\nCancel'
+options=$(printf "Fullscreen\nSelect\nCancel")
 
 # Command
-chosen=$(echo -e "$options" | $rofi_command -dmenu -i -p "Screenshot")
+chosen=$(echo "$options" | $rofi_command -dmenu -i -p "Screenshot")
 
 # Path to file
-location=$"/home/alexandre/Images/Screenshots/$(date +%s)-screen.png"
+location=$"$HOME/Images/Screenshots/$(date +%Y-%m-%d-%H%M%S).png"
 
-# Result
-if [[ $chosen = "Fullscreen" ]]; then
-    maim $location
-elif [[ $chosen = "Select" ]]; then
-    maim -s $location
+# Selection
+if [ "$chosen" = "Fullscreen" ]; then
+    maim "$location"
+    notify-send " Capture d'écran" "$location"
+elif [ "$chosen" = "Select" ]; then
+    maim -s "$location"
+    notify-send " Capture d'écran" "$location"
 fi
